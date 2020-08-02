@@ -1,0 +1,161 @@
+
+// Second page
+
+$border:  1.7px solid #bbc7d6
+$big_icon: 140px
+$main_background_color: #dae3f2
+
+.turnir-container
+    display: none
+    text-align: center
+    height: 100%
+    padding-top: 150px
+    justify-content: center
+    grid-template-columns: 200px 300px 500px 300px 200px
+    align-content: space-between
+
+    p
+        font-weight: 900
+        font-size: 20px
+        color: black
+    img 
+        overflow: hidden
+        border-radius: 50%
+        width: 100px
+        height: 100px
+        object-fit: cover
+
+    .filler-4
+        width: 200px
+        height: 200px
+    .filler-2
+        width: 300px
+        height: 100px
+    .filler-1
+        width: 500px
+        height: 300px
+
+    // Box 4 Left
+    .box-4-container-left
+        img 
+            width: $big_icon
+            height: $big_icon
+        .box-4-up, .box-4-down
+            border: $border
+            border-left: none
+            height: 200px
+            .hero-icon-up, .hero-icon-down
+                width: 170px
+                margin-left: -40px
+                margin-top: -70px
+                background-color: $main_background_color
+            p
+                margin-left: 150px
+                margin-top: 12px
+            .hero-icon-down
+                margin-top: 20px
+
+    // Box 2 Left
+    .box-2-container-left
+        .box-2
+            border: $border
+            border-left: none
+            height: 400px
+            .hero-icon-up, .hero-icon-down
+                width: 130px
+                margin-top: -50px
+                margin-left: 85px
+                background-color: $main_background_color
+            p
+                margin-left: 250px
+                margin-top: 130px
+            .hero-icon-down
+                margin-top: 145px
+    
+    // Box 1
+    .box-1
+        .box-1-up
+            height: 200px
+            p
+                margin-top: -80px
+                width: 500px
+                text-align: center
+                font-size: 23px
+                position: absolute
+            .hero-icon-up
+                height: 100px
+                .pobjednik
+                    position: absolute
+                    width: 140px
+                    height: 140px
+                    margin-left: -70px
+                    background-color: $main_background_color
+                    margin-top: -40px
+            .box-1-up-down
+                padding-top: 20px
+                .box-1-up-right, .box-1-up-left
+                    height: 80px
+                    width: 249.25px
+                .box-1-up-left
+                    border-right: $border
+        .box-1-down
+            height: 100px
+            .box-1-left, .box-1-right
+                display: inline-block
+                border-bottom: $border
+                float: left
+                height: 100px
+                width: 148.3px
+                .hero-icon-left, .hero-icon-right
+                    margin-top: 50px
+                    margin-left: 85px
+                    width: 130px
+                    background-color: $main_background_color
+                .hero-icon-right
+                    margin-left: -70px
+            .box-1-right
+                float: right
+            .box-1-middle
+                width: 200px
+                height: 35px
+                display: inline-block
+                border: $border
+                border-bottom: none
+                p
+                    margin-top: 5px
+    // Box 4 Right
+    .box-4-container-right
+        img 
+            width: $big_icon
+            height: $big_icon
+        .box-4-up, .box-4-down
+            border: $border
+            border-right: none
+            height: 200px
+            .hero-icon-up, .hero-icon-down
+                width: 170px
+                margin-top: -70px
+                margin-left: 70px
+                background-color: $main_background_color
+            p
+                margin-right: 150px
+                margin-top: 12px
+            .hero-icon-down
+                margin-top: 20px
+
+    // Box 2 Right
+    .box-2-container-right
+        .box-2
+            border: $border
+            border-right: none
+            height: 400px
+            .hero-icon-up, .hero-icon-down
+                width: 130px
+                margin-top: -50px
+                margin-left: 85px
+                background-color: $main_background_color
+            p
+                margin-right: 250px
+                margin-top: 130px
+            .hero-icon-down
+                margin-top: 145px

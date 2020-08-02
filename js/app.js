@@ -173,7 +173,7 @@ setTimeout(() => {
     brojac++;
   });
   brojac = 0;
-  $(".slider_icon").each(function () {
+  $(".hero-container > img").each(function () {
     $(this).attr("src", game.heroes[brojac].image);
     brojac++;
   });
@@ -200,6 +200,10 @@ function Slajder(vrijednost) {
     trenutni_heroj = vrijednost;
   }
 
+  var sljedeci_heroj_class = ".hero-" + ++trenutni_heroj;
+  $(sljedeci_heroj_class).animate({ height: 320 }, 400);
+  $("#slider_hero_name").html(game.heroes[--trenutni_heroj].name);
+
   if (trenutni_heroj == 0) {
     $(".prev").prop("disabled", true);
     $(".prev").css({ "background-color": "initial", cursor: "default" });
@@ -219,10 +223,6 @@ function Slajder(vrijednost) {
   $(".inFocus").removeClass("inFocus");
   var thumbnail = "#thumbnail a:nth-child(" + (trenutni_heroj + 1) + ") img";
   $(thumbnail).addClass("inFocus");
-
-  var sljedeci_heroj_class = ".hero-" + ++trenutni_heroj;
-  $(sljedeci_heroj_class).animate({ height: 320 }, 400);
-  $("#slider_hero_name").html(game.heroes[--trenutni_heroj].name);
 }
 
 // Pocetak turnira
