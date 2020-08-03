@@ -94,44 +94,78 @@ function Turnir() {
   $(".turnir-container").css("display", "grid");
   $(".pokreni").css("display", "none");
 
-  Random_Hero();
-
-  setTimeout(() => {
+  Remove_two_heroes();
+  $.when(Remove_two_heroes).done(() => {
     var brojac = 0;
     $(".cetvrtfinale").each(function () {
       $(this).attr("src", game.heroes[brojac].image);
       brojac++;
     });
-  }, 100);
 
-  setTimeout(() => {
-    console.log(game.heroes);
-    console.log("");
-    game.Quarterfinal();
+    var timer = setInterval(() => {
+      game.Quarterfinal();
 
-    var brojac = 0;
-    $(".polufinale").each(function () {
-      $(this).attr("src", game.polufinale[brojac].image);
-      brojac++;
-    });
+      var brojac = 0;
+      $(".quarterfinal").each(function () {
+        $(this).html(game.results[brojac] + ":" + game.results[brojac + 1]);
+        brojac += 2;
+      });
 
-    console.log("");
+      if (game.quarterfinalOver == true) {
+        PokreniPolufinale();
+        clearInterval(timer);
+      }
+    }, 2000);
+  });
+}
+
+function PokreniPolufinale() {
+  brojac = 0;
+  $(".polufinale").each(function () {
+    $(this).attr("src", game.polufinale[brojac].image);
+    brojac++;
+  });
+
+  game.results = [0, 0, 0, 0];
+  var timer = setInterval(() => {
     game.Semifinal();
 
     brojac = 0;
-    $(".finale").each(function () {
-      $(this).attr("src", game.finale[brojac].image);
-      brojac++;
+    $(".semifinal").each(function () {
+      $(this).html(game.results[brojac] + ":" + game.results[brojac + 1]);
+      brojac += 2;
     });
 
-    console.log("");
-    game.Finale();
-
-    $(".pobjednik").attr("src", game.winner[0].image);
-  }, 200);
+    if (game.semifinalOver == true) {
+      PokreniFinale();
+      clearInterval(timer);
+    }
+  }, 2000);
 }
 
-function Random_Hero() {
+function PokreniFinale() {
+  var brojac = 0;
+  $(".finale").each(function () {
+    $(this).attr("src", game.finale[brojac].image);
+    brojac++;
+  });
+
+  game.results = [0, 0];
+  var timer = setInterval(() => {
+    game.Finale();
+
+    $(".final").each(function () {
+      $(this).html(game.results[0] + ":" + game.results[1]);
+    });
+
+    if (game.finalOver == true) {
+      $(".pobjednik").attr("src", game.winner[0].image);
+      clearInterval(timer);
+    }
+  }, 2000);
+}
+
+function Remove_two_heroes() {
   var trueFalse = 0;
   while (trueFalse < 2) {
     var random_heroj = Math.floor(Math.random() * game.heroes.length);
@@ -142,28 +176,6 @@ function Random_Hero() {
   }
 }
 // TO DO:
-// - Arhitektura JS-a
 // - Ako bude vise od 5 nerješenih random pobjednik
 // - Ak ne dohvati sliku..
 // ...
-// - Optimizirat sass
-// - Probat animirat slike u slajderu da idu lijvo desno
-
-// Odigravanja
-
-/*
-for (var i = 0; i < 8; i++) {
-  var id = Math.floor(Math.random() * 732);
-  game.CheckIn(id);
-}
-
-setTimeout(() => {
-  console.log(game.heroes);
-  console.log("");
-  game.Quarterfinal();
-  console.log("");
-  game.Semifinal();
-  console.log("");
-  game.Finale();
-}, 2000);
-*/
