@@ -57,7 +57,6 @@ function Slajder(vrijednost) {
     trenutni_heroj++;
   } else if (vrijednost == "rand") {
     trenutni_heroj = Math.floor(Math.random() * 10);
-    // napravit da ne moze bit trenutni heroj
   } else {
     trenutni_heroj = vrijednost;
   }
@@ -87,8 +86,18 @@ function Slajder(vrijednost) {
   $(thumbnail).addClass("inFocus");
 }
 
-// Pocetak turnira
+function Remove_two_heroes() {
+  var trueFalse = 0;
+  while (trueFalse < 2) {
+    var random_heroj = Math.floor(Math.random() * game.heroes.length);
+    if (random_heroj != trenutni_heroj) {
+      game.heroes.splice(random_heroj, 1);
+      trueFalse++;
+    }
+  }
+}
 
+// Pocetak turnira
 function Turnir() {
   $(".main-container").css("display", "none");
   $(".turnir-container").css("display", "grid");
@@ -164,18 +173,3 @@ function PokreniFinale() {
     }
   }, 2000);
 }
-
-function Remove_two_heroes() {
-  var trueFalse = 0;
-  while (trueFalse < 2) {
-    var random_heroj = Math.floor(Math.random() * game.heroes.length);
-    if (random_heroj != trenutni_heroj) {
-      game.heroes.splice(random_heroj, 1);
-      trueFalse++;
-    }
-  }
-}
-// TO DO:
-// - Ako bude vise od 5 nerješenih random pobjednik
-// - Ak ne dohvati sliku..
-// ...

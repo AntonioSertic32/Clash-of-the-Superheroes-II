@@ -4,12 +4,14 @@ class Game {
   results = [0, 0, 0, 0, 0, 0, 0, 0];
 
   polufinale = [0, 0, 0, 0];
-  finale = [];
+  finale = [0, 0];
   winner = [];
 
   quarterfinalOver = false;
   semifinalOver = false;
   finalOver = false;
+
+  izgubljeniCetvrtfinalisti = [];
 
   keys = ["intelligence", "strength", "speed", "durability", "power", "combat"];
 
@@ -55,13 +57,15 @@ class Game {
           this.results[i]++;
           if (this.results[i] == 2) {
             this.polufinale[Math.round((i + 1) / 2 - 1)] = this.heroes[i];
+            this.izgubljeniCetvrtfinalisti.push(this.heroes[i + 1]);
             this.heroes[i] = 0;
             this.heroes[i + 1] = 0;
           }
         } else {
           this.results[i + 1]++;
           if (this.results[i + 1] == 2) {
-            this.polufinale[Math.round((i + 2) / 2 - 1)] = this.heroes[i];
+            this.polufinale[Math.round((i + 2) / 2 - 1)] = this.heroes[i + 1];
+            this.izgubljeniCetvrtfinalisti.push(this.heroes[i]);
             this.heroes[i] = 0;
             this.heroes[i + 1] = 0;
           }
@@ -85,14 +89,14 @@ class Game {
         if (rezultat == 1) {
           this.results[i]++;
           if (this.results[i] == 2) {
-            this.finale.push(this.polufinale[i]);
+            this.finale[Math.round((i + 1) / 2 - 1)] = this.polufinale[i];
             this.polufinale[i] = 0;
             this.polufinale[i + 1] = 0;
           }
         } else {
           this.results[i + 1]++;
           if (this.results[i + 1] == 2) {
-            this.finale.push(this.polufinale[i + 1]);
+            this.finale[Math.round((i + 2) / 2 - 1)] = this.polufinale[i];
             this.polufinale[i] = 0;
             this.polufinale[i + 1] = 0;
           }
